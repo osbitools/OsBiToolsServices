@@ -1,0 +1,7 @@
+{"properties": [
+    {
+        "name": "web.config.preview_host",
+        "type": "java.lang.String",
+        "description": "Name:Url publish destination"
+    }
+]}

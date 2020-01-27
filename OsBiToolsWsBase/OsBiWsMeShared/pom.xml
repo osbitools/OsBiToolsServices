@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>me-shared</artifactId>
+	<name>OsBiWsMeShared</name>
+	<description>Shared Map Editor libraries for OsBiTools Map Editor API</description>
+	<url>http://www.osbitools.com</url>
+
+	<properties>
+		<opencsv.version>2.0</opencsv.version>
+	</properties>
+
+	<parent>
+		<relativePath>../</relativePath>
+		<groupId>com.osbitools.ws</groupId>
+		<artifactId>parent</artifactId>
+		<version>2.11.0</version>
+	</parent>
+
+	<dependencies>
+
+    <dependency>
+      <groupId>com.osbitools.ws</groupId>
+      <artifactId>prj-shared-mapper</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>prj-shared-base</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>ds-shared</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>${opencsv.version}</version>
+		</dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <optional>true</optional>
+    </dependency>
+    
+		<!-- Test Dependencies -->
+		<dependency>
+      <groupId>com.osbitools.ws</groupId>
+      <artifactId>prj-shared-mapper</artifactId>
+      <version>${project.version}</version>
+      <type>test-jar</type>
+      <scope>test</scope>
+    </dependency>
+    
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>prj-shared-base</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>shared-rest-base</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>shared</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+      <groupId>com.osbitools.ws</groupId>
+      <artifactId>shared-web-config</artifactId>
+      <version>${project.version}</version>
+      <type>test-jar</type>
+      <scope>test</scope>
+    </dependency>
+
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>ds-shared</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>truezip-maven-plugin</artifactId>
+			<version>1.2</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<!-- Test prep. group of plugins -->
+
+			<!-- 1. Unzip demo maps -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpack</id>
+						<phase>generate-test-resources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.osbitools.ws</groupId>
+									<artifactId>ds-shared</artifactId>
+									<version>${project.version}</version>
+									<type>test-jar</type>
+									<outputDirectory>${demo.path}</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<!-- 2. Copy resources -->
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<includeEmptyDirs>true</includeEmptyDirs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>copy-config-demo-maps</id>
+						<phase>generate-test-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${osbi_shared.path}</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${demo.path}/com/osbitools/ws/shared/demo</directory>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+
+					<execution>
+						<id>default-test-jar</id>
+						<phase>package</phase>
+						<configuration>
+							<excludes>
+								<exclude>test.properties</exclude>
+								<exclude>logback-test.xml</exclude>
+								<exclude>com/osbitools/ws/me/shared/MeSharedTestAppConfig.class</exclude>
+							</excludes>
+						</configuration>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>truezip-maven-plugin</artifactId>
+				<version>1.2</version>
+				<executions>
+					<execution>
+						<id>copy-remote-repo</id>
+						<phase>generate-test-resources</phase>
+						<goals>
+							<goal>cp</goal>
+						</goals>
+						<configuration>
+							<verbose>true</verbose>
+							<from>src/test/remote.zip</from>
+							<to>${project.build.directory}</to>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

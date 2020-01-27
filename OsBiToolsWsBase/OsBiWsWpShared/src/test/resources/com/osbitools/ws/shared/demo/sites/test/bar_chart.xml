@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.osbitools.com/xsd/wp.xsd"
+	ver_max="1" ver_min="0" descr="" inc="8">
+	<panels>
+		<panel>
+			<wwg_list>
+				<wwg_chart uid="3" idx="0"
+					class_name="com.osbitools.charts.jqplot.bar">
+					<props>
+						<prop name="id" value="com_osbitools_charts_bar_3" />
+						<prop name="size_width" value="300" />
+						<prop name="size_height" value="300" />
+						<prop name="db_conn" value="hsql" />
+						<prop name="ds" value="tt.static" />
+						<prop name="is_animate" value="true" />
+						<prop name="x_axis" value="NAME" />
+					</props>
+					<prop_groups>
+						<prop_group name="series">
+							<props>
+								<prop name="label" value="LL_ID" />
+								<prop name="y_axis" value="ID" />
+							</props>
+							<props>
+								<prop name="label" value="LL_TEST" />
+								<prop name="y_axis" value="TEST" />
+							</props>
+						</prop_group>
+					</prop_groups>
+				</wwg_chart>
+			</wwg_list>
+		</panel>
+	</panels>
+</wp>

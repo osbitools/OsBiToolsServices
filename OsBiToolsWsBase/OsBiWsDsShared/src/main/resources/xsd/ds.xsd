@@ -1,0 +1,398 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:element name="ds" type="DataSetDescr" />
+
+	<xsd:complexType name="DataSetDescr">
+		<xsd:complexContent>
+			<xsd:extension base="DataSetExt">
+				<xsd:sequence>
+					<xsd:element name="req_params" type="RequestParameters"
+						minOccurs="0" maxOccurs="1" />
+					<xsd:choice minOccurs="1" maxOccurs="1">
+						<xsd:element name="group_data" type="GroupData" />
+						<xsd:element name="static_data" type="StaticData" />
+						<xsd:element name="csv_data" type="CsvData"/>
+						<xsd:element name="sql_data" type="SqlData" />
+						<xsd:element name="xml_data" type="XmlData" />
+					</xsd:choice>
+				</xsd:sequence>
+
+				<xsd:attribute name="descr" use="optional" type="xsd:string" />
+				<xsd:attribute name="enabled" type="xsd:boolean"
+					default="true" />
+				<xsd:attribute name="ver_max" use="required" type="xsd:int" />
+				<xsd:attribute name="ver_min" use="required" type="xsd:int" />
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="DataSetExt">
+		<xsd:sequence>
+			<xsd:element name="lang_map" type="LangMap" minOccurs="0"
+				maxOccurs="1" />
+
+			<xsd:element name="ex_columns" type="ExColumns"
+				minOccurs="0" maxOccurs="1" />
+
+			<xsd:element name="sort_by_grp" type="SortGroup"
+				minOccurs="0" maxOccurs="1" />
+
+			<xsd:element name="filter" type="ConditionFilter"
+				minOccurs="0" maxOccurs="1" />
+		</xsd:sequence>
+		<xsd:attribute name="idx" type="xsd:int" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Used by DsGroup to populate DataSet index inside of group
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="RequestParameters">
+		<xsd:sequence>
+			<xsd:element name="param" type="RequestParameter"
+				minOccurs="1" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="RequestParameter">
+		<xsd:attribute name="name" type="xsd:ID" use="required" />
+		<xsd:attribute name="java_type" type="xsd:string" use="required" />
+		<xsd:attribute name="size" type="xsd:int" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Optional component for String types
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="is_mandatory" type="xsd:boolean" default="false">
+      <xsd:annotation>
+        <xsd:documentation>
+          Optional flag to mark request parameter as mandatory.
+          Default: false
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+	</xsd:complexType>
+
+	<!-- DataSetSpec -->
+
+	<xsd:complexType name="DataSetSpec">
+		<xsd:sequence>
+			<xsd:element name="columns" type="Columns" minOccurs="0"
+				maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Java type for non-string columns
+						that needs to be included into calculation
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="Columns">
+		<xsd:sequence>
+			<xsd:element name="column" type="ColumnHeader" minOccurs="1"
+				maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ColumnHeader">
+		<xsd:complexContent>
+			<xsd:extension base="Cell">
+				<xsd:attribute name="java_type" type="xsd:string" use="required" />
+				<xsd:attribute name="on_error" type="xsd:string" />
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="GroupDataSetDescr">
+		<xsd:complexContent>
+			<xsd:extension base="DataSetExt">
+				<xsd:sequence>
+					<xsd:element name="group_data" type="GroupData"
+						minOccurs="1" maxOccurs="1" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="GroupData">
+		<xsd:complexContent>
+			<xsd:extension base="DataSetSpec">
+				<xsd:sequence>
+				  <xsd:element name="ds_list" minOccurs="1" maxOccurs="1"
+            type="DataSetExtList" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+  <xsd:complexType name="DataSetExtList">
+	  <xsd:sequence>
+	    <xsd:choice minOccurs="1" maxOccurs="unbounded">
+	      <xsd:element name="group_ds" type="GroupDataSetDescr" />
+	      <xsd:element name="static_ds" type="StaticDataSetDescr" />
+	      <xsd:element name="csv_ds" type="CsvDataSetDescr" />
+	      <xsd:element name="sql_ds" type="SqlDataSetDescr" />
+	      <xsd:element name="xml_ds" type="XmlDataSetDescr" />
+	    </xsd:choice>
+	  </xsd:sequence>
+  </xsd:complexType>
+  
+	<xsd:complexType name="Cell">
+		<xsd:attribute name="name" type="xsd:string" use="required" />
+	</xsd:complexType>
+
+	<xsd:complexType name="RowCell">
+		<xsd:complexContent>
+			<xsd:extension base="Cell">
+				<xsd:attribute name="value" type="xsd:string" use="required" />
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="LangMap">
+		<xsd:sequence>
+			<xsd:element name="column" type="LangColumn" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="LangColumn">
+		<xsd:complexContent>
+			<xsd:extension base="Cell" />
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="OrderedList">
+		<xsd:attribute name="idx" type="xsd:int" use="required" />
+	</xsd:complexType>
+
+	<xsd:complexType name="ConditionFilter">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string" />
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="SortGroup">
+		<xsd:sequence>
+			<xsd:element name="sort_by" type="SortCond" minOccurs="1"
+				maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:simpleType name="SortTypes">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="asc" />
+			<xsd:enumeration value="desc" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="StringSort">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="natural" />
+			<xsd:enumeration value="collator" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="SortCond">
+		<xsd:complexContent>
+			<xsd:extension base="OrderedList">
+				<xsd:attribute name="column" type="xsd:string" use="required" />
+				<xsd:attribute name="sequence" type="SortTypes" use="optional"
+					default="asc" />
+				<xsd:attribute name="unique" type="xsd:boolean" use="optional"
+					default="false" />
+				<xsd:attribute name="str_sort" type="StringSort" use="optional"
+					default="natural" />
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="ExColumns">
+		<xsd:sequence>
+			<xsd:element name="auto_inc" type="AutoIncColumns"
+				minOccurs="0" />
+			<xsd:element name="calc" type="CalcColumns" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AutoIncColumns">
+		<xsd:sequence>
+			<xsd:element name="column" type="AutoIncColumn"
+				minOccurs="1" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AutoIncColumn">
+		<xsd:complexContent>
+			<xsd:extension base="Cell">
+				<xsd:attribute name="start_from" type="xsd:int" use="optional"
+					default="0" />
+				<xsd:attribute name="inc_by" type="xsd:int" use="optional"
+					default="1" />
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="CalcColumns">
+		<xsd:sequence>
+			<xsd:element name="column" type="CalcColumn" minOccurs="1"
+				maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="CalcColumn">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="name" type="xsd:string" use="required" />
+				<xsd:attribute name="java_type" type="xsd:string" use="required" />
+				<xsd:attribute name="stop_on_error" type="xsd:boolean"
+					default="true" />
+				<xsd:attribute name="error_value" type="xsd:string" />
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<!-- Static DataSet -->
+
+	<xsd:complexType name="StaticDataSetDescr">
+		<xsd:complexContent>
+			<xsd:extension base="DataSetExt">
+				<xsd:sequence>
+					<xsd:element name="static_data" type="StaticData"
+						minOccurs="1" maxOccurs="1" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="StaticData">
+		<xsd:complexContent>
+			<xsd:extension base="DataSetSpec">
+				<xsd:sequence>
+					<xsd:element name="static_rows" type="StaticRecords"
+						minOccurs="1" maxOccurs="1" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="StaticRecords">
+		<xsd:sequence>
+			<xsd:element name="row" type="RowDef" minOccurs="1"
+				maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="RowDef">
+		<xsd:sequence>
+			<xsd:element name="cell" type="RowCell" minOccurs="1"
+				maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- CSV DataSet -->
+
+	<xsd:complexType name="CsvDataSetDescr">
+		<xsd:complexContent>
+			<xsd:extension base="DataSetExt">
+				<xsd:sequence>
+					<xsd:element name="csv_data" type="CsvData" minOccurs="1"
+						maxOccurs="1" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="CsvData">
+		<xsd:complexContent>
+			<xsd:extension base="DataSetSpec">
+				<xsd:attribute name="file_name" type="xsd:string" use="required">
+					<xsd:annotation>
+						<xsd:documentation>The file name is relative to the
+							project folder
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="delim" type="xsd:string" default="," />
+				<xsd:attribute name="quote_char" type="xsd:string" default="&quot;" />
+				<xsd:attribute name="escape_char" type="xsd:string" default="\" />
+				<xsd:attribute name="col_first_row" type="xsd:boolean"
+					default="true" />
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<!-- SQL DataSet -->
+	<xsd:complexType name="SqlDataSetDescr">
+		<xsd:complexContent>
+			<xsd:extension base="DataSetExt">
+				<xsd:sequence>
+					<xsd:element name="sql_data" type="SqlData" minOccurs="1"
+						maxOccurs="1" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="SqlData">
+		<xsd:complexContent>
+			<xsd:extension base="DataSetSpec">
+				<xsd:sequence>
+					<xsd:element name="sql" minOccurs="1" maxOccurs="1"
+						type="SqlDef" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="SqlDef">
+		<xsd:sequence>
+			<xsd:element name="descr" type="xsd:string" minOccurs="0"
+				maxOccurs="1" />
+			<xsd:element name="sql_text" type="xsd:string" minOccurs="1"
+				maxOccurs="1" />
+			<xsd:element name="sql_params" type="SqlParameters"
+				minOccurs="0" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="SqlParameters">
+		<xsd:sequence>
+			<xsd:element name="param" type="SqlParameter" minOccurs="1"
+				maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="SqlParameter">
+		<xsd:complexContent>
+			<xsd:extension base="OrderedList">
+				<xsd:attribute name="req_param" type="xsd:IDREF" />
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<!-- XML DataSet Start -->
+	<xsd:complexType name="XmlDataSetDescr">
+		<xsd:complexContent>
+			<xsd:extension base="DataSetExt">
+				<xsd:sequence>
+					<xsd:element name="xml_data" type="XmlData" minOccurs="1"
+						maxOccurs="1" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="XmlData">
+		<xsd:complexContent>
+			<xsd:extension base="DataSetSpec">
+				<!-- TODO -->
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+</xsd:schema>

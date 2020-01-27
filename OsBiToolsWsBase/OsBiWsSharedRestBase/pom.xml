@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>shared-rest-base</artifactId>
+	<packaging>jar</packaging>
+	<name>OsBiWsSharedRestBase</name>
+	<description>Shared Library for any REST service</description>
+	<url>http://www.osbitools.com</url>
+
+	<parent>
+		<groupId>com.osbitools.ws</groupId>
+		<artifactId>parent</artifactId>
+		<relativePath>../</relativePath>
+		<version>2.11.0</version>
+	</parent>
+
+	<dependencies>
+
+		<dependency>
+      <groupId>com.osbitools.ws</groupId>
+      <artifactId>shared-rest-config</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    
+		<dependency>
+      <groupId>com.osbitools.ws</groupId>
+      <artifactId>shared</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+		<!-- Test dependencies -->
+
+    <dependency>
+      <groupId>com.osbitools.ws</groupId>
+      <artifactId>shared-rest-config</artifactId>
+      <version>${project.version}</version>
+      <type>test-jar</type>
+      <scope>test</scope>
+    </dependency>
+    
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>shared</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- TODO Remove after switch on TestRestTemplate -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+
+					<execution>
+						<id>default-test-jar</id>
+						<phase>package</phase>
+						<configuration>
+							<excludes>
+								<exclude>test.properties</exclude>
+								<exclude>logback-test.xml</exclude>
+								<exclude>com/osbitools/ws/rest/shared/base/TestSharedRestBaseAppConfig.class</exclude>
+							</excludes>
+						</configuration>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>generate-test-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/rest</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/test/filtered</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>

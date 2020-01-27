@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.osbitools.com/xsd/ds.xsd"
+	ver_max="1" ver_min="0">
+
+    <sort_by_grp>
+        <sort_by idx="1" column="CNUM" sequence="asc"/>
+        <sort_by idx="2" column="CSTR" str_sort="collator"/>
+    </sort_by_grp>
+    <filter>(Integer.parseInt(@{CNUM}) &gt; 2) &amp;&amp; 
+					(Integer.parseInt(@{CNUM}) &lt; 5)</filter>
+    <csv_data file_name="sort1.csv"/>
+</ds>

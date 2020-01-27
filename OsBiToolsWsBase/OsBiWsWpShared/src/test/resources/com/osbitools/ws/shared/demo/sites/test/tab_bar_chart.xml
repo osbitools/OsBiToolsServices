@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<wp ver_max="1" ver_min="0" inc="8">
+	<panels>
+		<panel>
+			<wwg_list>
+				<wwg_container uid="1" idx="0"
+					class_name="com.osbitools.containers.tab_box">
+					<props>
+						<prop name="id" value="com_osbitools_containers_tab_box_1" />
+						<prop name="header_title" value="LX_BAR_CHART_DEMO" />
+						<prop name="header_icon" value="chart_bar.png" />
+					</props>
+					<wwg_list>
+						<wwg_chart uid="2" idx="0"
+							class_name="com.osbitools.charts.jqplot.bar" engine="jqplot">
+							<props>
+								<prop name="id" value="com_osbitools_charts_bar_2" />
+								<prop name="ds" value="tt.static" />
+								<prop name="x_axis" value="NAME" />
+							</props>
+							<prop_groups>
+								<prop_group name="series">
+									<props>
+										<prop name="label" value="LL_DEMO" />
+										<prop name="y_axis" value="ID" />
+									</props>
+								</prop_group>
+							</prop_groups>
+						</wwg_chart>
+					</wwg_list>
+
+				</wwg_container>
+			</wwg_list>
+		</panel>
+	</panels>
+</wp>

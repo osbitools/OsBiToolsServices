@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>shared</artifactId>
+	<packaging>jar</packaging>
+
+	<name>OsBiWsAuthShared</name>
+
+	<description>Shared Security Library with Spring Session security configuration parameters.
+Required by each OsBiTools Rest Service where security required.</description>
+
+	<parent>
+		<groupId>com.osbitools.ws.rest.auth</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.2.0</version>
+		<relativePath>../</relativePath>
+	</parent>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.osbitools.ws.rest.auth</groupId>
+			<artifactId>common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>shared-common</artifactId>
+			<version>${osbi-shared.version}</version>
+		</dependency>
+
+		<!-- Test dependencies -->
+		<dependency>
+			<groupId>com.osbitools.ws.rest.auth</groupId>
+			<artifactId>common</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+</project>

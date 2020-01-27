@@ -1,0 +1,7 @@
+{"properties": [
+    {
+        "name": "dev.enabled",
+        "type": "java.lang.Boolean",
+        "description": "Enable development mode. Needs to be disabled in production system. This feature has a high security risk by allowing remotely execute SELECT SQL. Default: false"
+    }
+]}

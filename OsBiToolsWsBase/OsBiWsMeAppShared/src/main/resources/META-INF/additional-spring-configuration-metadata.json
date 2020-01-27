@@ -1,0 +1,7 @@
+{"properties": [
+    {
+        "name": "web.config.ds_src",
+        "type": "java.lang.String",
+        "description": "Name:Url for accessing data source. Url expected to be in absolute or relative Default: local@/osbi_core"
+    }
+]}

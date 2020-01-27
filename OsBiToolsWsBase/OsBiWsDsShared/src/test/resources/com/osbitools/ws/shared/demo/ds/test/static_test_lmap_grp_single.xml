@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.osbitools.com/xsd/ds.xsd"
+	ver_max="1" ver_min="0">
+
+	<group_data>
+		<ds_list>
+			<static_ds>
+				<lang_map>
+					<column name="COL1" />
+				</lang_map>
+				<static_data>
+
+					<columns>
+						<column name="COL1" java_type="java.lang.String" on_error="" />
+					</columns>
+
+					<static_rows>
+						<row>
+							<cell name="COL1" value="LL_USERNAME" />
+						</row>
+
+						<row>
+							<cell name="COL1" value="LL_PASSWORD" />
+						</row>
+					</static_rows>
+				</static_data>
+			</static_ds>
+		</ds_list>
+	</group_data>
+</ds>

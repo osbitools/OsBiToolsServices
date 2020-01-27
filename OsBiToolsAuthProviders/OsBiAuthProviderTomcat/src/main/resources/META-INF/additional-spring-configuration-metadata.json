@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "auth.provider.tomcat.path",
+  "type": "java.lang.String",
+  "description": "A path for Tomcat Configuration Directory where users.xml is located."
+}]}

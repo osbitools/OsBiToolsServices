@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.osbitools.com/xsd/ds.xsd"
+	ver_max="1" ver_min="0">
+    
+    <sort_by_grp>
+        <sort_by idx="1" column="CDATE" sequence="asc"/>
+        <sort_by idx="2" column="CSTR" str_sort="natural"/>
+    </sort_by_grp>
+    
+    <filter>${date_from}.before(@{CDATE}) &amp;&amp;
+          @{CNUM} &gt; ${num_from} &amp;&amp;
+          ${date_to}.after(@{CDATE}) &amp;&amp;
+          @{CNUM} &lt; ${num_to}
+    </filter>
+    
+    <req_params>
+        <param java_type="com.osbitools.util.Date" name="date_from"/>
+        <param java_type="com.osbitools.util.Date" name="date_to"/>
+        <param java_type="java.lang.Double" name="num_from"/>
+        <param java_type="java.lang.Double" name="num_to"/>
+    </req_params>
+    
+    <csv_data file_name="filter_complex.csv">
+        <columns>
+            <column java_type="com.osbitools.util.Date" name="CDATE" on_error="" />
+            <column java_type="java.lang.Double" name="CNUM" on_error="" />
+        </columns>
+    </csv_data>
+</ds>

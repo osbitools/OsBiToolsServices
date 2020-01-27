@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ll_set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:noNamespaceSchemaLocation="http://www.osbitools.com/xsd/ll_set.xsd"
+	lang_list="en,fr,ru,es,de" ver_max="1" ver_min="0">
+
+  <lang_label id="LL_LETS_GO">
+    <ll_def lang="en" value="Let's go" />
+    <ll_def lang="fr" value="Allons-y" />
+    <ll_def lang="ru" value="Поехали" />
+    <ll_def lang="es" value="Vamonos" />
+    <ll_def lang="de" value="Lass uns gehen" />
+  </lang_label>
+	
+</ll_set>

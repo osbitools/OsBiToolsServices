@@ -1,0 +1,12 @@
+{"properties": [
+    {
+        "name": "ws.config.rescan",
+        "type": "java.lang.Integer",
+        "description": "Rescan time (msec) for configured folder with dataset maps. Default: 500"
+    },
+    {
+        "name": "ws.config.trace",
+        "type": "java.lang.Boolean",
+        "description": "Flag that controls if trace information returned together with dataset. Default: true"
+    }
+]}

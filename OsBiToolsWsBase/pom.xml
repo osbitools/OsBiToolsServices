@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.osbitools.ws</groupId>
+	<artifactId>parent</artifactId>
+	<packaging>pom</packaging>
+	<version>2.11.0</version>
+	<name>OsBiWsParent</name>
+	<url>http://www.osbitools.com</url>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.9.RELEASE</version>
+		<relativePath />
+	</parent>
+
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License v3.0</name>
+			<url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
+		</license>
+	</licenses>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<skipTests>true</skipTests>
+		<skipITs>true</skipITs>
+		<osbi_shared.path>${project.build.directory}/osbi_shared</osbi_shared.path>
+		<demo.path>${project.build.directory}/demo</demo.path>
+
+		<!-- Use older version of maven-dependency plugin due to bug MDEP-587 - 
+			https://jira.apache.org/jira/projects/MDEP/issues/MDEP-587?filter=allopenissues -->
+		<maven-dependency-plugin.version>2.10</maven-dependency-plugin.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Version>${project.version}</Version>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<modules>
+		<module>OsBiWsSharedCommon</module>
+		<module>OsBiSharedUtils</module>
+		<module>OsBiWsBase</module>
+		<module>OsBiWsShared</module>
+		<module>OsBiWsSharedWebConfig</module>
+		<module>OsBiWsDsShared</module>
+		<module>OsBiWsLsShared</module>
+		<module>OsBiWsWpShared</module>
+		<module>OsBiWsSharedRestConfig</module>
+		<module>OsBiWsSharedRestBase</module>
+		<module>OsBiWsSharedRestWeb</module>
+		<module>OsBiWsCoreShared</module>
+		<module>OsBiWsCoreComboShared</module>
+		<module>OsBiWsCoreAppShared</module>
+		<module>OsBiWsCoreApp</module>
+		<module>OsBiWsPrjSharedMapper</module>
+		<module>OsBiWsPrjSharedBase</module>
+		<module>OsBiWsPrjSharedRest</module>
+		<module>OsBiWsPrjSharedWeb</module>
+		<module>OsBiWsMeShared</module>
+		<module>OsBiWsMeAppShared</module>
+		<module>OsBiWsMeApp</module>
+		<module>OsBiWsPdShared</module>
+		<module>OsBiWsPdAppShared</module>
+		<module>OsBiWsPdApp</module>
+	</modules>
+
+	<profiles>
+		<profile>
+			<!-- Quick tests only -->
+			<id>utests</id>
+			<properties>
+				<skipTests>false</skipTests>
+			</properties>
+		</profile>
+
+		<profile>
+			<!-- All tests -->
+			<id>release</id>
+			<properties>
+				<skipTests>false</skipTests>
+				<skipITs>false</skipITs>
+			</properties>
+		</profile>
+	</profiles>
+
+</project>

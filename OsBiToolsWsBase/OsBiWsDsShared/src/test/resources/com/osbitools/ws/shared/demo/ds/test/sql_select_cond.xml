@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="http://www.osbitools.com/xsd/ds.xsd"  
+  ver_max="1" ver_min="0">
+
+    <sort_by_grp>
+        <sort_by idx="1" column="CINT" />
+    </sort_by_grp>
+          
+    <req_params>
+        <param java_type="java.lang.Integer" name="f"/>
+        <param java_type="java.lang.Integer" name="t"/>
+    </req_params>
+    
+    <sql_data>
+        <sql>
+            <sql_text>SELECT * FROM TEST_DATA 
+                        WHERE CINT &gt;= ? and CINT &lt;= ?</sql_text>
+            <sql_params>
+                <param idx="1" req_param="f" />
+                <param idx="2" req_param="t" />
+            </sql_params>
+        </sql>
+    </sql_data>
+</ds>

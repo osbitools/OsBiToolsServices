@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.osbitools.com/xsd/ds.xsd" 
+	descr="Empty DataSet" enabled="false" ver_max="1" ver_min="0">
+	
+    <xml_data></xml_data>
+</ds>

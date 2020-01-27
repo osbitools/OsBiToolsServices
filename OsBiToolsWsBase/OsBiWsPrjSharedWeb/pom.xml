@@ -1,0 +1,242 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>prj-shared-web</artifactId>
+	<name>OsBiWsPrjSharedWeb</name>
+	<description>Shared Project Management Web libraries for OsBiTools</description>
+	<url>http://www.osbitools.com</url>
+
+	<parent>
+		<relativePath>../</relativePath>
+		<groupId>com.osbitools.ws</groupId>
+		<artifactId>parent</artifactId>
+		<version>2.11.0</version>
+	</parent>
+
+	<repositories>
+		<repository>
+			<id>jgit-repository</id>
+			<url>https://repo.eclipse.org/content/groups/releases/</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+
+    <dependency>
+      <groupId>com.osbitools.ws</groupId>
+      <artifactId>prj-shared-rest</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>prj-shared-base</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>shared-rest-web</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jgit</groupId>
+			<artifactId>org.eclipse.jgit</artifactId>
+			<version>4.10.0.201712302008-r</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- Test Dependencies -->
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>prj-shared-rest</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>prj-shared-base</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+      <groupId>com.osbitools.ws</groupId>
+      <artifactId>shared-rest-config</artifactId>
+      <version>${project.version}</version>
+      <type>test-jar</type>
+      <scope>test</scope>
+    </dependency>
+    
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>shared-rest-base</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>shared-rest-web</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>shared</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+      <groupId>com.osbitools.ws</groupId>
+      <artifactId>shared-web-config</artifactId>
+      <version>${project.version}</version>
+      <type>test-jar</type>
+      <scope>test</scope>
+    </dependency>
+    
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>ls-shared</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>truezip-maven-plugin</artifactId>
+			<version>1.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- TODO Remove after switch on TestRestTemplate -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+
+					<execution>
+						<id>default-test-jar</id>
+						<phase>package</phase>
+						<configuration>
+							<skipIfEmpty>true</skipIfEmpty>
+							<excludes>
+								<exclude>test.properties</exclude>
+								<exclude>logback-test.xml</exclude>
+								<exclude>com/osbitools/ws/rest/prj/web/shared/PrjSharedWebTestAppConfig.class</exclude>
+							</excludes>
+						</configuration>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>generate-test-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/rest</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/test/filtered</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>copy-projects</id>
+						<phase>generate-test-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${osbi_shared.path}/projects</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/test/projects</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>truezip-maven-plugin</artifactId>
+				<version>1.2</version>
+				<executions>
+					<execution>
+						<id>copy-remote-repo</id>
+						<phase>generate-test-resources</phase>
+						<goals>
+							<goal>cp</goal>
+						</goals>
+						<configuration>
+							<verbose>true</verbose>
+							<from>src/test/remote.zip</from>
+							<to>${project.build.directory}</to>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

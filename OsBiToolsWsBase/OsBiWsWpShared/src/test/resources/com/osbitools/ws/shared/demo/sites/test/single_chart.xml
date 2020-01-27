@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<wp copyright="2015 OsBiTools" title="LL_TOOL_TITLE" charset="utf-8" page_loading="LL_LOADING" ver_max="1" ver_min="0" inc="8">
+    <panels>
+        <panel>
+            <wwg_list>
+                <wwg_chart engine="jqplot" uid="1" idx="0" 
+                          class_name="com.osbitools.charts.jqplot.bar">
+                    <props>
+                        <prop name="id" value="com_osbitools_charts_bar_1"/>
+                        <prop name="ds" value="tt.static"/>
+                        <prop name="is_animate" value="true"/>
+                        <prop name="x_axis" value="NAME"/>
+                        <prop name="is_show_point_labels" value="true"/>
+                        <prop name="legend_enabled" value="false"/>
+                        <prop name="is_stack_series" value="false"/>
+                    </props>
+                    <prop_groups>
+                        <prop_group name="series">
+                            <props>
+															<prop name="label" value="LX_ID"/>
+															<prop name="y_axis" value="ID"/>
+															<prop name="color" value="#ff0000"/>
+                            </props>
+                            <props>
+															<prop name="label" value="LX_TEST"/>
+															<prop name="y_axis" value="TEST"/>
+                            </props>
+                        </prop_group>
+                    </prop_groups>
+                </wwg_chart>
+            </wwg_list>
+        </panel>
+    </panels>
+</wp>

@@ -1,0 +1,158 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="request_params.xsd" />
+  
+	<xsd:element name="wp" type="WebPage" />
+
+	<xsd:complexType name="WebPage">
+		<xsd:sequence>
+			<xsd:element name="req_params" type="RequestParameters"
+						minOccurs="0" maxOccurs="1" />
+			<xsd:element name="panels" type="ComponentPanels"
+				minOccurs="1" maxOccurs="1" />
+		</xsd:sequence>
+
+		<xsd:attribute name="descr" use="optional" type="xsd:string" />
+		<xsd:attribute name="copyright" use="optional" type="xsd:string" />
+		<xsd:attribute name="title" use="optional" type="xsd:string" />
+		<xsd:attribute name="charset" use="optional" type="xsd:string" />
+		<xsd:attribute name="page_loading" use="optional" type="xsd:string" />
+		<xsd:attribute name="ver_max" use="required" type="xsd:int" />
+		<xsd:attribute name="ver_min" use="required" type="xsd:int" />
+		<xsd:attribute name="inc" use="required" type="xsd:int" />
+	</xsd:complexType>
+
+	<xsd:complexType name="ComponentPanels">
+		<xsd:sequence>
+			<xsd:element name="panel" type="ComponentPanel"
+				minOccurs="1" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ComponentPanel">
+		<xsd:sequence>
+          <xsd:element name="wwg_list" type="WebWidgets"
+            minOccurs="0" maxOccurs="1" />
+        </xsd:sequence>
+	</xsd:complexType>
+
+  <xsd:complexType name="WebWidgets">
+    <xsd:sequence>
+      <xsd:choice minOccurs="1" maxOccurs="unbounded">
+        <xsd:element name="wwg_container" type="WebWidgetContainer" />
+        <xsd:element name="wwg_chart" type="WebWidgetChart" />
+        <xsd:element name="wwg_control" type="WebWidgetControl" />
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+	<xsd:complexType name="WebWidget">
+		<xsd:sequence>
+			<xsd:element name="props" type="WebWidgetProperties"
+				minOccurs="1" maxOccurs="1" />
+			<xsd:element name="prop_groups" type="WebWidgetPropertiesGroups"
+				minOccurs="0" maxOccurs="1" />
+		</xsd:sequence>
+
+		<xsd:attribute name="uid" type="xsd:int" use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+					WebWidget unique id on Web Page
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="idx" type="xsd:int" use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+					WebWidget index among other widget on the same
+					level inside container
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="class_name" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+					WebWidget class name
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="WebWidgetProperties">
+		<xsd:sequence>
+			<xsd:element name="prop" type="WebWidgetProperty"
+				minOccurs="1" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="WebWidgetProperty">
+		<xsd:attribute name="name" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+					Property Name
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="value" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+					Property Value
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="WebWidgetContainer">
+		<xsd:complexContent>
+			<xsd:extension base="WebWidget">
+				<xsd:sequence>
+					<xsd:element name="wwg_list" type="WebWidgets"
+						minOccurs="0" maxOccurs="1" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WebWidgetChart">
+		<xsd:complexContent>
+			<xsd:extension base="WebWidget">
+				<xsd:attribute name="engine" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>
+							Charting library engine, for ex. "jqplot"
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WebWidgetPropertiesGroups">
+		<xsd:sequence>
+			<xsd:element name="prop_group" type="WebWidgetPropertiesGroup"
+				minOccurs="1" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="WebWidgetPropertiesGroup">
+		<xsd:sequence>
+			<xsd:element name="props" type="WebWidgetProperties"
+				minOccurs="1" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+					Name of group of properties
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="WebWidgetControl">
+		<xsd:complexContent>
+			<xsd:extension base="WebWidget" />
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>

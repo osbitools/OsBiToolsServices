@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.osbitools.com/xsd/ds.xsd" ver_max="1" ver_min="0">
+	
+    <sort_by_grp>
+		<sort_by idx="1" column="COL1" str_sort="collator" />
+	</sort_by_grp>
+	
+	<static_data>
+		<columns>
+			<column name="COL1" java_type="java.lang.String" on_error="" />
+			<column name="COL2" java_type="java.lang.String" on_error="" />
+			<column name="COL3" java_type="java.lang.String" on_error="" />
+		</columns>
+
+		<static_rows>
+			<row>
+				<cell name="COL1" value="A1" />
+				<cell name="COL2" value="B1" />
+				<cell name="COL3" value="C1" />
+
+			</row>
+
+			<row>
+				<cell name="COL1" value="a2" />
+				<cell name="COL2" value="b2" />
+				<cell name="COL3" value="c2" />
+			</row>
+
+			<row>
+				<cell name="COL1" value="A2" />
+				<cell name="COL2" value="B2" />
+				<cell name="COL3" value="C2" />
+			</row>
+
+			<row>
+				<cell name="COL1" value="a1" />
+				<cell name="COL2" value="b1" />
+				<cell name="COL3" value="c1" />
+			</row>
+		</static_rows>
+	</static_data>
+</ds>

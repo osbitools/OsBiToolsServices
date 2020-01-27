@@ -1,0 +1,31 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>shared-utils</artifactId>
+	<name>OsBiSharedUtils</name>
+	<description>OsBiTools Shared Utils</description>
+	<url>http://www.osbitools.com</url>
+
+	<parent>
+		<groupId>com.osbitools.ws</groupId>
+		<artifactId>parent</artifactId>
+		<relativePath>../</relativePath>
+		<version>2.11.0</version>
+	</parent>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+
+		<!-- Jackson -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.osbitools.com/xsd/wp.xsd"
+	ver_max="1" ver_min="0" inc="1">
+	<panels>
+		<panel>
+			<wwg_list>
+				<wwg_container uid="1" idx="0"
+					class_name="com.osbitools.containers.tab_box">
+					<props>
+						<prop name="id" value="com_osbitools_containers_tab_box_1" />
+					</props>
+					<wwg_list>
+						<wwg_container uid="2" idx="0"
+							class_name="com.osbitools.containers.tab_box">
+							<props>
+								<prop name="id" value="com_osbitools_containers_tab_box_2" />
+							</props>
+							<wwg_list>
+								<wwg_container uid="5" idx="0"
+									class_name="com.osbitools.containers.header_box">
+									<props>
+										<prop name="id"
+											value="com_osbitools_containers_header_box_5" />
+									</props>
+								</wwg_container>
+							</wwg_list>
+						</wwg_container>
+					</wwg_list>
+				</wwg_container>
+				<wwg_container uid="3" idx="1"
+					class_name="com.osbitools.containers.header_box">
+					<props>
+						<prop name="id" value="com_osbitools_containers_header_box_3" />
+					</props>
+					<wwg_list>
+						<wwg_container uid="4" idx="0"
+							class_name="com.osbitools.containers.tab_box">
+							<props>
+								<prop name="id" value="com_osbitools_containers_tab_box_4" />
+							</props>
+						</wwg_container>
+					</wwg_list>
+				</wwg_container>
+			</wwg_list>
+		</panel>
+	</panels>
+</wp>

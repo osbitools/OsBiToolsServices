@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.osbitools.com/xsd/ds.xsd"
+	ver_max="1" ver_min="0">
+
+    <sort_by_grp>
+        <sort_by idx="1" column="COL4" sequence="asc"/>
+        <sort_by idx="2" column="COL3" str_sort="natural"/>
+    </sort_by_grp>
+    
+    <filter>(new java.util.Date("01/01/2007")).before(@{COL4}) &amp;&amp;
+          @{COL3} &gt; 4d &amp;&amp;
+          (new java.util.Date("12/31/2007")).after(@{COL4}) &amp;&amp;
+          @{COL3} &lt; 6d</filter>
+    
+    <csv_data file_name="filter_complex_no_header.csv" col_first_row="false">
+        <columns>
+            <column java_type="com.osbitools.util.Date" name="COL4" on_error="" />
+            <column java_type="java.lang.Double" name="COL3" on_error="" />
+        </columns>
+    </csv_data>
+</ds>

@@ -1,0 +1,27 @@
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="ll_set" type="LangLabelsSet" />
+
+	<xsd:complexType name="LangLabelsSet">
+		<xsd:sequence>
+			<xsd:element name="lang_label" type="LangLabel"
+				minOccurs="1" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute name="lang_list" type="xsd:string" />
+		<xsd:attribute name="ver_max" use="required" type="xsd:int" />
+		<xsd:attribute name="ver_min" use="required" type="xsd:int" />
+	</xsd:complexType>
+
+	<xsd:complexType name="LangLabel">
+		<xsd:sequence>
+			<xsd:element name="ll_def" type="LangLabelDef" minOccurs="1"
+				                                      maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:string" use="required" />
+	</xsd:complexType>
+
+	<xsd:complexType name="LangLabelDef">
+	  <xsd:attribute name="lang" type="xsd:string" use="required" />
+    <xsd:attribute name="value" type="xsd:string" default="" />
+	</xsd:complexType>
+</xsd:schema>

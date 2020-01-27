@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.osbitools.com/xsd/ds.xsd"
+	ver_max="1" ver_min="0">
+	<group_data>
+		<columns>
+			<column name="CSTR" java_type="java.lang.String" on_error="" />
+			<column name="CNUM" java_type="java.lang.String" on_error="" />
+		</columns>
+		<ds_list>
+			<csv_ds idx="0">
+				<csv_data file_name="sort1.csv">
+					<columns>
+						<column name="CSTR" java_type="java.lang.String" on_error="" />
+						<column name="CNUM" java_type="java.lang.String" on_error="" />
+					</columns>
+				</csv_data>
+			</csv_ds>
+			<static_ds idx="1">
+				<static_data>
+					<columns>
+						<column name="CSTR" java_type="java.lang.String" on_error="" />
+						<column name="CNUM" java_type="java.lang.String" on_error="" />
+					</columns>
+					<static_rows>
+						<row>
+							<cell name="CSTR" value="_UUu" />
+							<cell name="CNUM" value="222" />
+						</row>
+						<row>
+							<cell name="CSTR" value="_dDd" />
+							<cell name="CNUM" value="333" />
+						</row>
+					</static_rows>
+				</static_data>
+			</static_ds>
+			<csv_ds idx="2">
+				<csv_data file_name="sort1.csv">
+					<columns>
+						<column name="CSTR" java_type="java.lang.String" on_error="" />
+						<column name="CNUM" java_type="java.lang.String" on_error="" />
+					</columns>
+				</csv_data>
+			</csv_ds>
+		</ds_list>
+	</group_data>
+</ds>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.osbitools.ws</groupId>
+	<artifactId>parent</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+
+	<name>OsBiToolsServicesAggregate</name>
+
+	<description>Parent POM file for all OsBiTools Services and included libraries</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.14.RELEASE</version>
+		<relativePath />
+	</parent>
+
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License v3.0</name>
+			<url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
+		</license>
+	</licenses>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<osbi-shared.version>2.10.0</osbi-shared.version>
+		<skipTests>true</skipTests>
+	</properties>
+
+	<modules>
+		<module>OsBiToolsWsBase</module>
+		<module>OsBiToolsAuthProviders</module>
+		<module>OsBiToolsWsAuth</module>
+		<module>OsBiToolsWsCloud</module>
+	</modules>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+			<properties>
+				<skipTests>false</skipTests>
+			</properties>
+		</profile>
+	</profiles>
+
+</project>

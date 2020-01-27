@@ -1,0 +1,71 @@
+
+<!-- saved from url=(0104)http://mailer1.techetraining.com/unsubscribe.php?M=755937&C=d7101f4b5174d020f375cac2ad49b51e&L=115&N=510 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/main.js"></script>
+
+<style>
+body {
+	margin: 0px;
+	font: 11px tahoma;
+}
+
+table.login-content {
+	border: solid 1px #EDEACA;
+	width: 300px;
+	height: 100px;
+	background-color: #FFFEE4;
+	padding: 20px;
+	margin: auto;
+}
+
+table.login {
+	width: 100%;
+	height: 100%;
+	border-width: 0
+}
+
+td.login-btn {
+	text-align: right;
+	padding-top: 10px;
+}
+
+#auth_res {
+	float: left
+}
+
+</style>
+</head>
+<body>
+
+	<table class="login">
+		<tbody>
+			<tr height="100%">
+				<td>
+						<table class="login-content">
+							<tr>
+								<td>Username:</td>
+								<td><input type="text" id="usr" value="user" /></td>
+							</tr>
+
+							<tr>
+								<td>Password:</td>
+								<td><input type="password" id="pwd" value="user_pwd" /></td>
+							</tr>
+							
+							<tr>
+								<td colspan="2" class="login-btn">
+									<span id="auth_res"></span>
+									<input type="submit" onclick="authenticate()" value="Submit" />
+							</tr>
+						</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>

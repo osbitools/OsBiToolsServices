@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>demo-auth-server</artifactId>
+	<packaging>jar</packaging>
+
+	<name>OsBiWsCloudDemoAuthServer</name>
+	<description>Demo Authentication Server with Spring Security for OsBiTools Cloud Services</description>
+
+	<parent>
+		<relativePath>../</relativePath>
+		<groupId>com.osbitools.ws.rest.cloud</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.2.0</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.osbitools.ws.rest.auth</groupId>
+			<artifactId>demo-server-shared</artifactId>
+			<version>${osbi-shared.auth.version}</version>
+		</dependency>
+		
+		<!-- Test dependencies -->
+		<dependency>
+			<groupId>com.osbitools.ws.rest.auth</groupId>
+			<artifactId>common</artifactId>
+			<version>${osbi-shared.auth.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.github.kstyrc</groupId>
+			<artifactId>embedded-redis</artifactId>
+			<version>0.6</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>

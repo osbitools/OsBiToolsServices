@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.osbitools.com/xsd/wp.xsd"
+	descr="Test Web Page #1" ver_max="1" ver_min="0" inc="0">
+	<panels>
+		<panel>
+			<wwg_list>
+				<wwg_container uid="1" idx="0"
+					class_name="com.osbitools.containers.tab_box">
+					<props>
+						<prop name="id" value="test" />
+					</props>
+					<wwg_list>
+						<wwg_chart uid="2" idx="0" class_name="xxx">
+							<props>
+								<prop name="height" value="200" />
+								<prop name="width" value="200" />
+							</props>
+						</wwg_chart>
+					</wwg_list>
+				</wwg_container>
+			</wwg_list>
+		</panel>
+	</panels>
+</wp>

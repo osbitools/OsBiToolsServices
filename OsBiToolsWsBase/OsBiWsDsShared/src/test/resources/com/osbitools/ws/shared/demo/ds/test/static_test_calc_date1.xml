@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.osbitools.com/xsd/ds.xsd"  
+	ver_max="1" ver_min="0">
+		
+    <ex_columns>
+        <auto_inc>
+            <column name="COL2" start_from="9" inc_by="2" />
+            <column name="COL3" start_from="1995"/>
+        </auto_inc>
+        
+        <calc>
+            <column java_type="java.lang.Long" name="COL4">
+            	(new java.util.Date(@{COL1} + "/" + @{COL2} + 
+            								"/" + @{COL3})).getTime()
+            </column>
+            <column java_type="java.lang.String" name="COL5">
+            	new java.text.SimpleDateFormat("M/d/y").format(
+            		new java.util.Date(@{COL1} + "/" + @{COL2} + "/" + @{COL3}))
+            </column>
+        </calc>
+    </ex_columns>
+    
+	<static_data>
+	    
+		<columns>
+			<column name="COL1" java_type="java.lang.Integer" on_error="" />
+		</columns>
+
+		<static_rows>
+			<row>
+				<cell name="COL1" value="1" />
+			</row>
+			<row>
+				<cell name="COL1" value="2" />
+			</row>
+			<row>
+				<cell name="COL1" value="3" />
+			</row>
+			<row>
+				<cell name="COL1" value="4" />
+			</row>
+			<row>
+				<cell name="COL1" value="5" />
+			</row>
+			<row>
+				<cell name="COL1" value="6" />
+			</row>
+			<row>
+				<cell name="COL1" value="7" />
+			</row>
+			<row>
+				<cell name="COL1" value="8" />
+			</row>
+			<row>
+				<cell name="COL1" value="9" />
+			</row>
+			<row>
+				<cell name="COL1" value="10" />
+			</row>
+			<row>
+				<cell name="COL1" value="11" />
+			</row>
+			<row>
+				<cell name="COL1" value="12" />
+			</row>
+		</static_rows>
+	</static_data>
+</ds>

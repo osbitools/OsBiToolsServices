@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.osbitools.com/xsd/ds.xsd"  ver_max="1" ver_min="0">
+		
+    <ex_columns>
+        <calc>
+            <column java_type="java.lang.String" name="COL2">
+            	"[" + @{COL1}.getTime() + "]"
+            </column>
+        </calc>
+    </ex_columns>
+    
+	<static_data>
+	    
+		<columns>
+			<column name="COL1" java_type="com.osbitools.util.Date" on_error="" />
+		</columns>
+
+		<static_rows>
+			<row>
+				<cell name="COL1" value="2000-12-31" />
+			</row>
+		</static_rows>
+	</static_data>
+</ds>

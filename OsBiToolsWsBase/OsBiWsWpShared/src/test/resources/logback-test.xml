@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuration>
+  <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <Pattern>.%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg %n
+      </Pattern>
+    </encoder>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>TRACE</level>
+    </filter>
+  </appender>
+  
+  <root>
+    <level value="OFF" />
+    <appender-ref ref="consoleAppender" />
+  </root>
+
+  <logger name="Test" level="OFF" additivity="false">
+    <appender-ref ref="consoleAppender" />
+  </logger>
+  
+</configuration>

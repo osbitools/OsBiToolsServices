@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>shared-common</artifactId>
+	<packaging>jar</packaging>
+
+	<name>OsBiWsSharedCommon</name>
+	<description>Common REST module for service requests</description>
+
+	<parent>
+		<groupId>com.osbitools.ws</groupId>
+		<artifactId>parent</artifactId>
+		<relativePath>../</relativePath>
+		<version>2.11.0</version>
+	</parent>
+
+</project>

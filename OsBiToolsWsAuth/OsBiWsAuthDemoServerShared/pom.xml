@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.osbitools.ws.rest.auth</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.2.0</version>
+		<relativePath>../</relativePath>
+	</parent>
+	<artifactId>demo-server-shared</artifactId>
+	<name>OsBiWsAuthDemoServerShared</name>
+	<description>Shared libraries for OsBiTools Demo Authentication Server based on Spring Session</description>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.osbitools.ws.rest.auth</groupId>
+			<artifactId>server-shared</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.osbitools.ws.auth.provider</groupId>
+			<artifactId>tomcat</artifactId>
+			<version>${auth-provider.version}</version>
+		</dependency>
+
+		<!-- Test dependencies -->
+
+		<dependency>
+			<groupId>com.osbitools.ws.rest.auth</groupId>
+			<artifactId>common</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.osbitools.ws.rest.auth</groupId>
+			<artifactId>server-shared</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+	
+</project>

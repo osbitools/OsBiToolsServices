@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.osbitools.com/xsd/ds.xsd" 
+	descr="Test DataSet" enabled="true" ver_max="1" ver_min="0">
+
+	<ex_columns>
+		<auto_inc>
+			<column name="A11" />
+			<column name="B22" />
+		</auto_inc>
+
+		<calc>
+			<column java_type="Integer" name="CALC1">A + B</column>
+			<column java_type="String" name="CALC2">C + D</column>
+		</calc>
+	</ex_columns>
+
+	<sort_by_grp>
+		<sort_by idx="1" column="COL1" sequence="asc" unique="false" />
+		<sort_by idx="2" column="COL2" sequence="desc" unique="false" />
+	</sort_by_grp>
+
+	<filter><![CDATA[A < B]]></filter>
+	
+	<static_data>
+		<columns>
+			<column name="COL1" java_type="java.lang.String" on_error="" />
+			<column name="COL2" java_type="java.lang.String" on_error="" />
+		</columns>
+		<static_rows>
+			<row>
+				<cell name="COL1" value="UUu" />
+				<cell name="COL2" value="ЦцЦ" />
+			</row>
+			<row>
+				<cell name="COL1" value="dDd" />
+				<cell name="COL2" value="ЗЗз" />
+			</row>
+		</static_rows>
+	</static_data>
+</ds>

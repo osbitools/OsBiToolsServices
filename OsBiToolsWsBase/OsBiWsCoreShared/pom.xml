@@ -1,0 +1,204 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>core-shared</artifactId>
+	<packaging>jar</packaging>
+	<name>OsBiWsCoreShared</name>
+	<description>Shared Core DataSet Mapping Library</description>
+	<url>http://www.osbitools.com</url>
+
+	<parent>
+		<groupId>com.osbitools.ws</groupId>
+		<artifactId>parent</artifactId>
+		<relativePath>../</relativePath>
+		<version>2.11.0</version>
+	</parent>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>shared</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>shared-utils</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>ds-shared</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>ls-shared</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- JPA -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		
+		<!-- Jackson -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>2.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.janino</groupId>
+			<artifactId>janino</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- Test Dependencies -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>shared</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>ds-shared</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.osbitools.ws</groupId>
+			<artifactId>ls-shared</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<!-- pre-integration-test group of plugins -->
+
+			<!-- 1. Unzip demo maps -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpack</id>
+						<phase>generate-test-resources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.osbitools.ws</groupId>
+									<artifactId>ds-shared</artifactId>
+									<version>${project.version}</version>
+									<type>test-jar</type>
+									<outputDirectory>target/demo</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- 2. Copy resources -->
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<includeEmptyDirs>true</includeEmptyDirs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>copy-config-demo-maps</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/osbi_shared</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/test/config</directory>
+									<filtering>false</filtering>
+								</resource>
+								<resource>
+									<directory>${project.build.directory}/demo/com/osbitools/ws/shared/demo</directory>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+
+					<execution>
+						<id>default-test-jar</id>
+						<phase>package</phase>
+						<configuration>
+							<excludes>
+								<exclude>test.properties</exclude>
+								<exclude>logback-test.xml</exclude>
+								<exclude>com/osbitools/ws/core/shared/TestCoreSharedAppConfig.class</exclude>
+							</excludes>
+						</configuration>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+
+		<finalName>osbiws_core</finalName>
+	</build>
+
+</project>

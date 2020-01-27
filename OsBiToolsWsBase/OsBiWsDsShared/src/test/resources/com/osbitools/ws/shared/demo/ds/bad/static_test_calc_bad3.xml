@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.osbitools.com/xsd/ds.xsd" 
+	ver_max="1" ver_min="0">
+	
+    <ex_columns>
+        <calc>
+            <column java_type="java.lang.Integer" name="COL3">@{COL1}*@{COL1} + 
+                						@{COL2}*@{COL2} </column>
+        </calc>
+    </ex_columns>
+    
+	<static_data>
+	    
+		<columns>
+			<column name="COL1" java_type="java.lang.String" on_error="ERROR !!!" />
+			<column name="COL2" java_type="java.lang.String" on_error="ERROR !!!" />
+		</columns>
+
+		<static_rows>
+			<row>
+				<cell name="COL1" value="1" />
+				<cell name="COL2" value="1" />
+			</row>
+		</static_rows>
+	</static_data>
+</ds>

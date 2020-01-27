@@ -1,0 +1,23 @@
+{"properties": [
+    {
+        "name": "ws.config.git_remote_name",
+        "type": "java.lang.String",
+        "description": "Name of remote git repository. Default: origin."
+    },
+    {
+        "name": "ws.config.git_remote_url",
+        "type": "java.lang.String",
+        "description": "Location for remote git repository. By default is not configured."
+    },
+    {
+        "name": "ws.config.minified",
+        "type": "java.lang.Boolean",
+        "description": "Flag that controls the format of saved files. Default: false"
+    },
+    {
+        "name": "ws.config.max_upload_file_size",
+        "type": "java.lang.Integer",
+        "description": "Max size (mb) of uploaded file. Default: 10"
+    }
+]}
+

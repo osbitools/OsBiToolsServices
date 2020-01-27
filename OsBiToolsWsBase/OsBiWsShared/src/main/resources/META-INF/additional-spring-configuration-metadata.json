@@ -1,0 +1,17 @@
+{"properties": [
+    {
+        "name": "home.dir",
+        "type": "java.lang.String",
+        "description": "Location of configuration.properties file. Default: ~/osbi_shared"
+    },
+    {
+        "name": "ws.config.debug",
+        "type": "java.lang.Boolean",
+        "description": "Flag that controls if additional error debug information returned to client. Default: true"
+    },
+    {
+        "name": "ws.config.lang",
+        "type": "java.lang.String",
+        "description": "Defalut language locale. Default: en"
+    }
+]}

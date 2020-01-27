@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.osbitools.com/xsd/wp.xsd"
+	descr="Test Web Page #1" ver_max="1" ver_min="0" inc="2">
+	<panels>
+		<panel>
+			<wwg_list>
+				<wwg_chart idx="0" uid="2" class_name="">
+					<props>
+						<prop name="height" value="200" />
+						<prop name="width" value="200" />
+					</props>
+				</wwg_chart>
+			</wwg_list>
+		</panel>
+	</panels>
+</wp>

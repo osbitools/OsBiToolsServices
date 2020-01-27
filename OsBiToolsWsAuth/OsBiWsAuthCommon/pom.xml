@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>common</artifactId>
+	<packaging>jar</packaging>
+
+	<name>OsBiWsAuthCommon</name>
+
+	<description>Common Security library that uses Spring Sessions. Used both by Authentication Server and Common Security layer for each OsBiTools Rest Web Service</description>
+
+	<parent>
+		<groupId>com.osbitools.ws.rest.auth</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.2.0</version>
+		<relativePath>../</relativePath>
+	</parent>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>test-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>
